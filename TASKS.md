@@ -13,11 +13,11 @@ the root while the application is rebuilt from a clean start.
 
 ## Project scaffolding
 
-- [ ] Create the `api/` NestJS application and `web/` Next.js App Router
+- [x] Create the `api/` NestJS application and `web/` Next.js App Router
       application directly under the repository root.
-- [ ] Initialize shadcn/ui in `web/` and add only the components the task
+- [x] Initialize shadcn/ui in `web/` and add only the components the task
       manager needs.
-- [ ] Choose non-conflicting local ports and confirm the frontend can reach the
+- [x] Choose non-conflicting local ports and confirm the frontend can reach the
       API.
 
 ## Backend
