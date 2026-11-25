@@ -39,6 +39,7 @@ the root while the application is rebuilt from a clean start.
 - [x] Add a shadcn dialog for creating and editing tasks.
 - [x] Add delete confirmation.
 - [x] Show loading and error states and success toasts for completed actions.
+- [x] Add a persistent, animated light/dark theme toggle.
 - [x] Verify keyboard access, labelled controls, visible focus, and date
       selection.
 

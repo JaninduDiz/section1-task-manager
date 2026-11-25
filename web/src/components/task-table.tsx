@@ -36,17 +36,20 @@ const statusDetails: Record<
   TODO: {
     label: "To do",
     icon: Circle,
-    className: "border-slate-200 bg-slate-50 text-slate-700",
+    className:
+      "border-slate-200 bg-slate-50 text-slate-700 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-300",
   },
   IN_PROGRESS: {
     label: "In progress",
     icon: Clock3,
-    className: "border-blue-200 bg-blue-50 text-blue-700",
+    className:
+      "border-blue-200 bg-blue-50 text-blue-700 dark:border-blue-900 dark:bg-blue-950 dark:text-blue-300",
   },
   DONE: {
     label: "Done",
     icon: CheckCircle2,
-    className: "border-emerald-200 bg-emerald-50 text-emerald-700",
+    className:
+      "border-emerald-200 bg-emerald-50 text-emerald-700 dark:border-emerald-900 dark:bg-emerald-950 dark:text-emerald-300",
   },
 };
 

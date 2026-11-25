@@ -85,9 +85,9 @@ npm run lint
 3. **A small typed API client and local UI state:** the app has a few CRUD
    screens, so this avoids adding a server-state library while keeping
    networking and error messages in one place.
-4. **shadcn UI primitives:** they provide consistent, labelled controls,
-   dialogs, calendar, table, and accessible focus behavior while allowing the
-   interface to stay lightweight.
+4. **shadcn UI primitives and next-themes:** shadcn supplies the interface
+   components, while next-themes handles the saved, system-aware light/dark
+   preference.
 5. **Explicit recovery feedback:** load failures offer a retry, form failures
    stay visible in the dialog, and successful actions show toasts.
 

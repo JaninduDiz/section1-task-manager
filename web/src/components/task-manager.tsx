@@ -16,6 +16,7 @@ import { useEffect, useMemo, useState } from "react";
 import { toast } from "sonner";
 import { TaskFormDialog } from "@/components/task-form-dialog";
 import { TaskTable } from "@/components/task-table";
+import { ThemeToggle } from "@/components/theme-toggle";
 import {
   AlertDialog,
   AlertDialogCancel,
@@ -80,7 +81,7 @@ function SummaryCard({
   iconClassName: string;
 }) {
   return (
-    <Card className="shadow-sm">
+    <Card className="shadow-sm transition-colors duration-500 motion-reduce:transition-none">
       <CardContent className="flex items-center justify-between p-4">
         <div>
           <p className="text-sm text-muted-foreground">{label}</p>
@@ -219,8 +220,8 @@ export function TaskManager() {
   }
 
   return (
-    <div className="min-h-screen bg-muted/30">
-      <header className="border-b bg-background">
+    <div className="min-h-screen bg-muted/30 transition-colors duration-500 motion-reduce:transition-none">
+      <header className="border-b bg-background transition-colors duration-500 motion-reduce:transition-none">
         <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-6">
           <div className="flex items-center gap-3">
             <span className="flex size-9 items-center justify-center rounded-lg bg-primary text-primary-foreground">
@@ -228,7 +229,7 @@ export function TaskManager() {
             </span>
             <span className="font-semibold tracking-tight">Task Manager</span>
           </div>
-          <span className="text-sm text-muted-foreground">Personal workspace</span>
+          <ThemeToggle />
         </div>
       </header>
 
@@ -268,17 +269,17 @@ export function TaskManager() {
             label="In progress"
             value={counts.inProgress}
             icon={Clock3}
-            iconClassName="bg-blue-100 text-blue-700"
+            iconClassName="bg-blue-100 text-blue-700 dark:bg-blue-950 dark:text-blue-300"
           />
           <SummaryCard
             label="Completed"
             value={counts.completed}
             icon={CheckCircle2}
-            iconClassName="bg-emerald-100 text-emerald-700"
+            iconClassName="bg-emerald-100 text-emerald-700 dark:bg-emerald-950 dark:text-emerald-300"
           />
         </section>
 
-        <Card className="shadow-sm">
+        <Card className="shadow-sm transition-colors duration-500 motion-reduce:transition-none">
           <CardHeader className="gap-4 sm:flex sm:flex-row sm:items-center sm:justify-between">
             <div className="space-y-1">
               <CardTitle>All tasks</CardTitle>
