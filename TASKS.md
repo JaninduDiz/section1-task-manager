@@ -34,17 +34,17 @@ the root while the application is rebuilt from a clean start.
 
 ## Frontend
 
-- [ ] Define shared Task types and an API client.
-- [ ] Fetch and display tasks in a responsive table with status badges.
-- [ ] Add a shadcn dialog for creating and editing tasks.
-- [ ] Add delete confirmation.
-- [ ] Show loading and error states and success toasts for completed actions.
-- [ ] Verify keyboard access, labelled controls, visible focus, and date
+- [x] Define shared Task types and an API client.
+- [x] Fetch and display tasks in a responsive table with status badges.
+- [x] Add a shadcn dialog for creating and editing tasks.
+- [x] Add delete confirmation.
+- [x] Show loading and error states and success toasts for completed actions.
+- [x] Verify keyboard access, labelled controls, visible focus, and date
       selection.
 
 ## Finish and submit
 
-- [ ] Run API tests, build, and lint; run frontend build and lint.
+- [x] Run API tests, build, and lint; run frontend build and lint.
 - [ ] Verify the fresh-clone setup instructions from the README.
 - [ ] Document 3–5 implementation decisions and how AI was used, including a
       mistake found and corrected.
