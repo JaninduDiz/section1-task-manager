@@ -130,6 +130,9 @@ export function TaskManager() {
   const [editingTask, setEditingTask] = useState<Task | null>(null);
   const [taskToDelete, setTaskToDelete] = useState<Task | null>(null);
   const [deletingTaskId, setDeletingTaskId] = useState<string | null>(null);
+  const [updatingTaskIds, setUpdatingTaskIds] = useState<Set<string>>(
+    () => new Set(),
+  );
 
   useEffect(() => {
     const controller = new AbortController();
@@ -196,6 +199,41 @@ export function TaskManager() {
     toast.success("Task created", {
       description: "Your new task is ready.",
     });
+  }
+
+  async function changeTaskStatus(
+    task: Task,
+    status: TaskStatus,
+  ): Promise<void> {
+    if (task.status === status) return;
+
+    setUpdatingTaskIds((current) => new Set(current).add(task.id));
+    try {
+      const updatedTask = await updateTask(task.id, {
+        title: task.title,
+        description: task.description ?? null,
+        status,
+        dueDate: task.dueDate?.slice(0, 10) ?? null,
+      });
+      setTasks((current) =>
+        current.map((currentTask) =>
+          currentTask.id === task.id ? updatedTask : currentTask,
+        ),
+      );
+      toast.success("Task status updated", {
+        description: "Your change has been saved.",
+      });
+    } catch (error) {
+      toast.error("Could not update task status", {
+        description: errorMessage(error),
+      });
+    } finally {
+      setUpdatingTaskIds((current) => {
+        const next = new Set(current);
+        next.delete(task.id);
+        return next;
+      });
+    }
   }
 
   async function confirmDelete(): Promise<void> {
@@ -395,6 +433,8 @@ export function TaskManager() {
                 tasks={visibleTasks}
                 onEdit={openEditDialog}
                 onDelete={setTaskToDelete}
+                onStatusChange={changeTaskStatus}
+                updatingTaskIds={updatingTaskIds}
               />
             )}
           </CardContent>

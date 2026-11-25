@@ -3,6 +3,7 @@
 import { format, parseISO } from "date-fns";
 import { CalendarDays, LoaderCircle } from "lucide-react";
 import { useState, type FormEvent } from "react";
+import { StatusSelect } from "@/components/status-select";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
@@ -21,13 +22,6 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
 import type { Task, TaskInput, TaskStatus } from "@/lib/tasks";
 
@@ -37,10 +31,6 @@ type TaskFormDialogProps = {
   onOpenChange: (open: boolean) => void;
   onSave: (input: TaskInput, taskId?: string) => Promise<void>;
 };
-
-function isTaskStatus(value: string | null): value is TaskStatus {
-  return value === "TODO" || value === "IN_PROGRESS" || value === "DONE";
-}
 
 export function TaskFormDialog({
   open,
@@ -139,31 +129,15 @@ export function TaskFormDialog({
             <div className="grid gap-4 sm:grid-cols-2">
               <div className="space-y-2">
                 <Label htmlFor="task-status">Status</Label>
-                <Select
-                  value={status}
-                  onValueChange={(value) => {
-                    if (isTaskStatus(value)) setStatus(value);
-                  }}
-                >
-                  <SelectTrigger
-                    id="task-status"
-                    size="lg"
-                    className="w-full"
-                  >
-                    <SelectValue>
-                      {status === "TODO"
-                        ? "To do"
-                        : status === "IN_PROGRESS"
-                          ? "In progress"
-                          : "Done"}
-                    </SelectValue>
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="TODO">To do</SelectItem>
-                    <SelectItem value="IN_PROGRESS">In progress</SelectItem>
-                    <SelectItem value="DONE">Done</SelectItem>
-                  </SelectContent>
-                </Select>
+                <StatusSelect
+                  id="task-status"
+                  status={status}
+                  onStatusChange={setStatus}
+                  disabled={saving}
+                  fullWidth
+                  size="lg"
+                  triggerVariant="plain"
+                />
               </div>
 
               <div className="space-y-2">
@@ -244,7 +218,6 @@ export function TaskFormDialog({
             <Button
               type="submit"
               disabled={saving || !title.trim()}
-              className="h-10"
             >
               {saving && <LoaderCircle className="animate-spin" />}
               {task ? "Save changes" : "Create task"}

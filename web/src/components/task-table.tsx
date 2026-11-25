@@ -1,16 +1,8 @@
 "use client";
 
 import { format, parseISO } from "date-fns";
-import {
-  CalendarDays,
-  CheckCircle2,
-  Circle,
-  Clock3,
-  Pencil,
-  Trash2,
-  type LucideIcon,
-} from "lucide-react";
-import { Badge } from "@/components/ui/badge";
+import { CalendarDays, Pencil, Trash2 } from "lucide-react";
+import { StatusSelect } from "@/components/status-select";
 import { Button } from "@/components/ui/button";
 import {
   Table,
@@ -27,30 +19,8 @@ type TaskTableProps = {
   tasks: Task[];
   onEdit: (task: Task) => void;
   onDelete: (task: Task) => void;
-};
-
-const statusDetails: Record<
-  TaskStatus,
-  { label: string; icon: LucideIcon; className: string }
-> = {
-  TODO: {
-    label: "To do",
-    icon: Circle,
-    className:
-      "border-slate-200 bg-slate-50 text-slate-700 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-300",
-  },
-  IN_PROGRESS: {
-    label: "In progress",
-    icon: Clock3,
-    className:
-      "border-blue-200 bg-blue-50 text-blue-700 dark:border-blue-900 dark:bg-blue-950 dark:text-blue-300",
-  },
-  DONE: {
-    label: "Done",
-    icon: CheckCircle2,
-    className:
-      "border-emerald-200 bg-emerald-50 text-emerald-700 dark:border-emerald-900 dark:bg-emerald-950 dark:text-emerald-300",
-  },
+  onStatusChange: (task: Task, status: TaskStatus) => Promise<void>;
+  updatingTaskIds: ReadonlySet<string>;
 };
 
 function formatTaskDate(value: string, dateOnly = false): string {
@@ -61,18 +31,13 @@ function formatTaskDate(value: string, dateOnly = false): string {
   return format(date, "MMM d, yyyy");
 }
 
-function StatusBadge({ status }: { status: TaskStatus }) {
-  const { icon: StatusIcon, label, className } = statusDetails[status];
-
-  return (
-    <Badge variant="outline" className={className}>
-      <StatusIcon aria-hidden="true" />
-      {label}
-    </Badge>
-  );
-}
-
-export function TaskTable({ tasks, onEdit, onDelete }: TaskTableProps) {
+export function TaskTable({
+  tasks,
+  onEdit,
+  onDelete,
+  onStatusChange,
+  updatingTaskIds,
+}: TaskTableProps) {
   return (
     <Table className="min-w-[620px]">
       <TableCaption className="sr-only">Task list</TableCaption>
@@ -97,7 +62,15 @@ export function TaskTable({ tasks, onEdit, onDelete }: TaskTableProps) {
               </div>
             </TableCell>
             <TableCell>
-              <StatusBadge status={task.status} />
+              <StatusSelect
+                status={task.status}
+                ariaLabel={`Change status for ${task.title}`}
+                disabled={updatingTaskIds.has(task.id)}
+                loading={updatingTaskIds.has(task.id)}
+                onStatusChange={(status) => {
+                  void onStatusChange(task, status);
+                }}
+              />
             </TableCell>
             <TableCell>
               {task.dueDate ? (
@@ -122,6 +95,7 @@ export function TaskTable({ tasks, onEdit, onDelete }: TaskTableProps) {
                   variant="ghost"
                   size="icon-sm"
                   aria-label={`Edit ${task.title}`}
+                  disabled={updatingTaskIds.has(task.id)}
                   onClick={() => onEdit(task)}
                 >
                   <Pencil aria-hidden="true" />
@@ -131,6 +105,7 @@ export function TaskTable({ tasks, onEdit, onDelete }: TaskTableProps) {
                   variant="ghost"
                   size="icon-sm"
                   aria-label={`Delete ${task.title}`}
+                  disabled={updatingTaskIds.has(task.id)}
                   onClick={() => onDelete(task)}
                 >
                   <Trash2 aria-hidden="true" />
