@@ -167,7 +167,10 @@ export function TaskFormDialog({
                       <span className="text-muted-foreground">Pick a date</span>
                     )}
                   </PopoverTrigger>
-                  <PopoverContent align="start" className="w-auto p-0">
+                  <PopoverContent
+                    align="start"
+                    className="w-(--anchor-width) p-0"
+                  >
                     <Calendar
                       mode="single"
                       selected={selectedDate}
