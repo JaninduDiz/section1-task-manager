@@ -493,7 +493,6 @@ export function TaskManager() {
               variant="destructive"
               disabled={deletingTaskId !== null}
               onClick={() => void confirmDelete()}
-              className="h-10"
             >
               {deletingTaskId !== null && (
                 <LoaderCircle aria-hidden="true" className="animate-spin" />
