@@ -22,14 +22,14 @@ the root while the application is rebuilt from a clean start.
 
 ## Backend
 
-- [ ] Define the Task model: `id`, required `title`, optional `description`,
+- [x] Define the Task model: `id`, required `title`, optional `description`,
       `status` (`TODO`, `IN_PROGRESS`, `DONE`), optional `dueDate`, and `createdAt`.
-- [ ] Implement in-memory task storage and service operations.
-- [ ] Implement `GET /tasks`, `GET /tasks/:id`, `POST /tasks`, `PATCH /tasks/:id`,
+- [x] Implement in-memory task storage and service operations.
+- [x] Implement `GET /tasks`, `GET /tasks/:id`, `POST /tasks`, `PATCH /tasks/:id`,
       and `DELETE /tasks/:id`.
-- [ ] Add create/update DTO validation with `class-validator`; return 400 for
+- [x] Add create/update DTO validation with `class-validator`; return 400 for
       invalid input and 404 for missing task IDs.
-- [ ] Test CRUD behavior, validation failures, missing IDs, and optional field
+- [x] Test CRUD behavior, validation failures, missing IDs, and optional field
       updates.
 
 ## Frontend
