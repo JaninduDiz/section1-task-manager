@@ -5,7 +5,7 @@ NestJS API for the Section 1 Task Manager.
 ## Development
 
 ```bash
-npm install
+npm ci
 npm run start:dev
 ```
 

@@ -8,7 +8,7 @@ From the repository root, start the API in one terminal:
 
 ```bash
 cd api
-npm install
+npm ci
 npm run start:dev
 ```
 
@@ -16,7 +16,7 @@ In another terminal, start the frontend:
 
 ```bash
 cd web
-npm install
+npm ci
 cp .env.example .env.local
 npm run dev
 ```

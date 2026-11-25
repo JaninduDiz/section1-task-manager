@@ -45,8 +45,9 @@ the root while the application is rebuilt from a clean start.
 ## Finish and submit
 
 - [x] Run API tests, build, and lint; run frontend build and lint.
-- [ ] Verify the fresh-clone setup instructions from the README.
-- [ ] Document 3–5 implementation decisions and how AI was used, including a
+- [x] Verify the fresh-clone setup instructions from the README.
+- [x] Document 3–5 implementation decisions and how AI was used, including a
       mistake found and corrected.
-- [ ] Review the final staged diff, then push the completed code to the new
-      public GitHub repository.
+- [x] Review the final worktree diff and checks.
+- [ ] Commit locally and push the completed code to the new public GitHub
+      repository.
