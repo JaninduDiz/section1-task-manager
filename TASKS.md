@@ -1,0 +1,52 @@
+# Section 1 Task Manager Checklist
+
+The repository root should contain `api/` and `web/`. This checklist stays at
+the root while the application is rebuilt from a clean start.
+
+## Repository setup
+
+- [x] Create a new public repository.
+- [x] Initialize Git in this directory and set the author identity locally.
+- [x] Add a root `.gitignore` for dependencies, build output, and environment
+      files; confirm the repository root is this directory.
+- [x] Commit the initial repository setup with a clear message.
+
+## Project scaffolding
+
+- [ ] Create the `api/` NestJS application and `web/` Next.js App Router
+      application directly under the repository root.
+- [ ] Initialize shadcn/ui in `web/` and add only the components the task
+      manager needs.
+- [ ] Choose non-conflicting local ports and confirm the frontend can reach the
+      API.
+
+## Backend
+
+- [ ] Define the Task model: `id`, required `title`, optional `description`,
+      `status` (`TODO`, `IN_PROGRESS`, `DONE`), optional `dueDate`, and `createdAt`.
+- [ ] Implement in-memory task storage and service operations.
+- [ ] Implement `GET /tasks`, `GET /tasks/:id`, `POST /tasks`, `PATCH /tasks/:id`,
+      and `DELETE /tasks/:id`.
+- [ ] Add create/update DTO validation with `class-validator`; return 400 for
+      invalid input and 404 for missing task IDs.
+- [ ] Test CRUD behavior, validation failures, missing IDs, and optional field
+      updates.
+
+## Frontend
+
+- [ ] Define shared Task types and an API client.
+- [ ] Fetch and display tasks in a responsive table with status badges.
+- [ ] Add a shadcn dialog for creating and editing tasks.
+- [ ] Add delete confirmation.
+- [ ] Show loading and error states and success toasts for completed actions.
+- [ ] Verify keyboard access, labelled controls, visible focus, and date
+      selection.
+
+## Finish and submit
+
+- [ ] Run API tests, build, and lint; run frontend build and lint.
+- [ ] Verify the fresh-clone setup instructions from the README.
+- [ ] Document 3–5 implementation decisions and how AI was used, including a
+      mistake found and corrected.
+- [ ] Review the final staged diff, then push the completed code to the new
+      public GitHub repository.
